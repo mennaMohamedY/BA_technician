@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".splash.SplashScreenActivity"
+    android:background="@drawable/bib2">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#48ECE8E8"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Welcome To Bibliotheca Alexandrina"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginTop="42dp"
+        android:layout_marginLeft="16dp"
+        android:textSize="32sp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

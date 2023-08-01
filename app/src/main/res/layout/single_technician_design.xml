@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="180dp"
+        android:layout_margin="12dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="35dp"
+        android:background="@drawable/rounded_borders">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:src="@drawable/james"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/rounded_corners"
+            android:id="@+id/Person_Img" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/Person_Img"
+            android:text="Available"
+            android:background="@color/teal"
+            android:padding="7dp"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:id="@+id/available_or_busy" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/available_or_busy"
+            android:layout_margin="9dp"
+            android:background="@drawable/rounded_borders_addtask"
+            android:text="Add Task"
+            android:id="@+id/Go_to_task"
+            android:textColor="@color/white"
+             />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/Go_to_task"
+            android:layout_margin="9dp"
+            android:background="@drawable/rounded_borders"
+            android:text="No of Tasks:"
+            android:id="@+id/no_of_tasks"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/teal" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

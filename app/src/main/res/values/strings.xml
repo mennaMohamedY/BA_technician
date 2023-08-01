@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">BaApplication</string>
+    <string-array name="Engineers_names">
+        <item>Eng:Sara.Badr</item>
+        <item>Eng:Amr.Rahal</item>
+        <item>Eng:Mahmoud.Elsayed</item>
+        <item>Eng:Mahmoud.Hussieny</item>
+        <item>Eng:nazmy.nazmy</item>
+        <item>Eng:marwa.fadl</item>
+        <item>Eng:abbas.abbas</item>
+        <item>Eng:esraa.samir</item>
+        <item>Eng:haidy.abdelsattar</item>
+        <item>Eng:esraa.gamal</item>
+        <item>Eng:ahmed.abdelfatah</item>
+        <item>Eng:Kirollos.adel</item>
+        <item>Eng:mayson.mabrouk</item>
+        <item>Eng:menna.yousef</item>
+        <item>Eng:elshaimaa.moustafa</item>
+        <item>Eng:Eng:mariam.darwish</item>
+    </string-array>
+</resources>

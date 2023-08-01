@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "305739991052",
+    "project_id": "baalexandrina-c327a",
+    "storage_bucket": "baalexandrina-c327a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:305739991052:android:c193f932238782afd60629",
+        "android_client_info": {
+          "package_name": "com.example.baapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "305739991052-sdk9405evkrbncgtjb2n2kk3kgb5rk0k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.baapplication",
+            "certificate_hash": "5684ae0c35c00f2ad3295956fba1da08e9b0d4cd"
+          }
+        },
+        {
+          "client_id": "305739991052-abk6o7ie7m9ba3bag9ae24fqesc4qg0h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZylWVEpc_M48ti7agU1TeV2ZUuZoybz4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "305739991052-abk6o7ie7m9ba3bag9ae24fqesc4qg0h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

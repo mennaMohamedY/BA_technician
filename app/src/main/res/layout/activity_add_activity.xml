@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.example.baapplication.addtask.AddTaskViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".addtask.AddTaskActivity">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="12dp"
+            android:text="About Task"
+            android:textSize="20sp"
+            android:id="@+id/about_task_txt" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/about_task_txt"
+            android:layout_margin="12dp"
+            android:id="@+id/task_Description"
+            Error="@{vm.taskDecriptionError}"
+            >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_input_borders"
+                android:hint="task Description"
+                android:text="@={vm.taskDescription}"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/task_Description"
+            android:layout_margin="12dp"
+            android:padding="12dp"
+            android:orientation="vertical"
+            android:id="@+id/Linear_container"
+            android:background="@drawable/borders"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Going To the Task  With"
+                android:textSize="20sp"
+                android:textColor="#75523A"/>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Engs_spinner"
+                android:padding="25dp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/Linear_container"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/borders"
+            android:layout_margin="22dp"
+            android:text="Start Task"
+            android:backgroundTint="#AE684343"
+            android:padding="14dp"
+            android:textColor="@color/white"
+            android:id="@+id/startTimeBtn"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/Linear_container"
+            app:layout_constraintStart_toEndOf="@id/startTimeBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="20dp"
+            android:id="@+id/startTime"
+            Error="@{vm.dateError}"
+            tools:hint="dd-mm-yyyy HH:mm:ss">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_input_borders"
+                android:id="@+id/startTimeText"
+                android:text="@={vm.date}"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/startTimeBtn"
+            android:background="@drawable/borders"
+            android:layout_margin="22dp"
+            android:text="submit"
+            android:backgroundTint="#AE684343"
+            android:padding="14dp"
+            android:onClickListener="@{()->vm.createTask()}"
+            android:textColor="@color/white"
+            android:id="@+id/submitBtn"/>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
