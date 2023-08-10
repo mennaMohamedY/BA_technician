@@ -14,6 +14,9 @@ class FireStoreUtiles {
     //singleton
     val UsersCollectionName="Users"
     val TechniciansCollectionName="Technicians"
+    val TasksCollection="Tasks"
+    val AuthenticatedUSers="Authenticated_Users"
+
 
     fun getCollectionRef(collectionName:String):CollectionReference{
         val database=FirebaseFirestore.getInstance()
@@ -51,6 +54,42 @@ class FireStoreUtiles {
         * in vm val roomsliveData=MutableLiveData<List<Room>>()
         * */
     }
+
+    fun addTask(task:TaskDetails):Task<Void>{
+        var TechRef=getCollectionRef(TechniciansCollectionName).document(task.TechId!!)
+
+        //collection 3lshan yeshel list of documents "list of tasks"
+        //it's not a single task for each technician
+        //so the next line says make a collection with name tasks
+        var Tasks=TechRef.collection(TasksCollection)
+
+
+        var taskDoc=Tasks.document()
+        task.TaskId = taskDoc.id!!
+        return taskDoc.set(task)
+    }
+
+    fun getTechTasks(TechId:String):CollectionReference{
+        return getCollectionRef(TechniciansCollectionName).document(TechId).collection(TasksCollection)
+    }
+    fun getAllTasks(TechId:String):Task<QuerySnapshot>{
+        //var TechRef=getCollectionRef(TechniciansCollectionName).document(tech_id)
+       // var Tasks=TechRef.collection(TasksCollection)
+        val tasksRef= getCollectionRef(TechniciansCollectionName).document(TechId).collection(TasksCollection)
+        return tasksRef.get()
+
+       // return Tasks.get()
+    }
+
+    fun InsertAuthenticatedUsers(user:User):Task<Void>{
+        val docRef=getCollectionRef(AuthenticatedUSers).document(user.id!!)
+        return docRef.set(user)
+    }
+    fun getAllAuthenticatedUsers():Task<QuerySnapshot>{
+        val collectionref=getCollectionRef(AuthenticatedUSers).get()
+        return collectionref
+    }
+
 
 
 

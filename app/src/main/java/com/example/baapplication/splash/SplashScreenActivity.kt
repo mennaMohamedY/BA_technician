@@ -11,6 +11,7 @@ import com.example.baapplication.login.LoginActivity
 import com.example.baapplication.models.FireStoreUtiles
 import com.example.baapplication.models.User
 import com.example.baapplication.models.UserProvider
+import com.example.baapplication.singin.SignInActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class SplashScreenActivity : AppCompatActivity() {
@@ -18,8 +19,11 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
         Handler(Looper.getMainLooper()).postDelayed({
-            checkUser()
-        },2000)
+            //checkUser()
+            goToLoginActivity()
+             // goToSignInActivity()
+
+        },1000)
 
 
     }
@@ -49,6 +53,10 @@ class SplashScreenActivity : AppCompatActivity() {
     }
     fun goToLoginActivity(){
         val intent= Intent(this@SplashScreenActivity,LoginActivity::class.java)
+        startActivity(intent)
+    }
+    fun goToSignInActivity(){
+        val intent= Intent(this@SplashScreenActivity,SignInActivity::class.java)
         startActivity(intent)
     }
 }

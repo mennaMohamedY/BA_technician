@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">BaApplication</string>
     <string-array name="Engineers_names">
+        <item></item>
         <item>Eng:Sara.Badr</item>
         <item>Eng:Amr.Rahal</item>
         <item>Eng:Mahmoud.Elsayed</item>

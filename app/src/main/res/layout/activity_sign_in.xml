@@ -6,15 +6,14 @@
     <data>
         <variable
             name="vm"
-            type="com.example.baapplication.login.LoginViewModel" />
+            type="com.example.baapplication.singin.SignInViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".login.LoginActivity">
-
+        tools:context=".singin.SignInActivity">
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -36,9 +35,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:text="Welcome To BA Technicians App"
+                android:text="Welcome To Bibliotheca alexandrina, \n Sign In to continue "
                 android:textStyle="bold"
-                android:textSize="25sp" />
+                android:textSize="20sp" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -54,7 +53,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/top_guidLine"
             app:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/UserName_txt"
+            android:id="@+id/email_txt"
             android:layout_margin="12dp"
             android:text="Email"
             android:textSize="22sp"
@@ -65,54 +64,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/UserName_txt"
+            app:layout_constraintTop_toBottomOf="@id/email_txt"
             android:layout_margin="15dp"
             android:background="@drawable/rounded_input_borders"
-            android:id="@+id/userName_editText"
-            Error="@{vm.userNameError}">
+            android:id="@+id/email_editText"
+            Error="@{vm.emailError}">
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_input_borders"
                 android:hint="Enter your Email"
-                android:text="@={vm.userName}"/>
+                android:text="@={vm.email}"/>
         </com.google.android.material.textfield.TextInputLayout>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/userName_editText"
-            app:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/MobileNumber_txt"
-            android:layout_margin="12dp"
-            android:text="Phone Number"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="@color/lighterBlue" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/MobileNumber_txt"
-            android:layout_margin="15dp"
-            android:background="@drawable/rounded_input_borders"
-            android:id="@+id/phoneNumber_editText"
-            Error="@{vm.phoneNumberError}">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_input_borders"
-                android:hint="Enter your Phone Number"
-                android:text="@={vm.phoneNumber}"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/phoneNumber_editText"
+            app:layout_constraintTop_toBottomOf="@id/email_editText"
             app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/password_txt"
             android:layout_margin="12dp"
@@ -140,64 +108,33 @@
                 android:hint="Enter Password" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/password_editText"
             app:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/Repassword_txt"
-            android:layout_margin="12dp"
-            android:text="confirm password"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="@color/lighterBlue" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/Repassword_txt"
-            android:layout_margin="15dp"
-            android:background="@drawable/rounded_input_borders"
-            android:id="@+id/Repassword_editText"
-            Error="@{vm.repasswordError}">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_input_borders"
-                android:inputType="textPassword"
-                android:hint="Re-Enter Password"
-                android:text="@={vm.repassword}"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/Repassword_editText"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:background="@drawable/sign_inbtn"
-            android:layout_margin="12dp"
-            android:text="Register"
+            android:layout_margin="32dp"
+            android:text="Sign In"
+            android:id="@+id/signInBtn"
             android:textColor="@color/white"
             android:textAllCaps="false"
             android:paddingHorizontal="17dp"
-            android:id="@+id/reisterBtn"
-            android:onClickListener="@{()->vm.Register()}"
+            android:onClickListener="@{()->vm.Sign_IN()}"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/reisterBtn"
+            app:layout_constraintTop_toBottomOf="@id/signInBtn"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:id="@+id/goToSignIN"
-            android:layout_margin="9dp"
-            android:text="Already Registered, Sign In"
-            android:textSize="14sp"
+            android:id="@+id/goT0RegisterActivity"
+            android:layout_margin="13dp"
+            android:text="not Registered Yet! ,Sign Up"
+            android:textSize="18sp"
             android:textColor="@color/lighterBlue"
-            android:onClickListener="@{()->vm.NavigateToSignI()}"/>
+            android:onClickListener="@{()->vm.goToRegisterActivity()}"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

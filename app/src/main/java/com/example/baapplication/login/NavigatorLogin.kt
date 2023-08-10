@@ -7,4 +7,5 @@ interface NavigatorLogin {
     fun showError(errorMsg:String)
     fun goToLoginActivity()
     fun showMsg()
+    fun goToSignInActivity()
 }

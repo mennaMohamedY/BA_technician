@@ -37,7 +37,7 @@ class LoginViewModel:ViewModel() {
     val auth= FirebaseAuth.getInstance()
     val options = PhoneAuthOptions.newBuilder(auth)
 
-    fun signIn(){
+    fun Register(){
         if(validation()) {
             //navigator?.goToHomeActivity()
             //navigator?.signInWithPhoneNumber()
@@ -64,7 +64,8 @@ class LoginViewModel:ViewModel() {
         )
         FireStoreUtiles().insertUserToDataBase(user).addOnCompleteListener({
             if(it.isSuccessful){
-                navigator?.goToHomeActivity()
+               // navigator?.goToHomeActivity()
+                navigator?.goToSignInActivity()
             }else{
                 navigator?.showError(it.exception?.localizedMessage.toString()+"Error inFireStoreUtiles")
                 //navigator?.goToLoginActivity()
@@ -97,6 +98,9 @@ class LoginViewModel:ViewModel() {
         }
 
     }
+    fun NavigateToSignI(){
+        navigator?.goToSignInActivity()
+    }
 
 
     fun validation():Boolean{
@@ -116,7 +120,7 @@ class LoginViewModel:ViewModel() {
             UserNameError.set(null)
         }else{
             valid1=false
-            UserNameError.set("Enter a valid Email ex menna.yousef@bibalex.org")
+            UserNameError.set("Enter a valid Email ex menna.yousef@bibalex.dom")
         }
     }
 

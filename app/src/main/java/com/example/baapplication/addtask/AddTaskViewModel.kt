@@ -1,8 +1,11 @@
 package com.example.baapplication.addtask
 
 import androidx.databinding.ObservableField
+import androidx.databinding.adapters.AdapterViewBindingAdapter.OnNothingSelected
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.baapplication.models.TechDataClass
+import com.example.baapplication.models.*
+import com.google.firebase.firestore.FirebaseFirestore
 
 class AddTaskViewModel :ViewModel() {
     var addedTask: TechDataClass?=null
@@ -17,18 +20,45 @@ class AddTaskViewModel :ViewModel() {
     var Date=ObservableField<String>()
     var DateError=ObservableField<String>()
     var navigator:TaskNavigator?=null
+    var spinnerError=ObservableField<String>()
+    var nothingSelected=ObservableField<Boolean>()
+    var GoingWithEng=ObservableField<String>()
+    //val auth=FirebaseFirestore.getInstance()
+    var techID=ObservableField<String>()
+
+    var noOfTask=MutableLiveData<NoOfTasks>()
+
+
+
+
+    var validate=ObservableField<Boolean>()
+
 
 
     fun createTask(){
         if(validTask()){
+
+            validate=validate
+
+            val task=TaskDetails(
+                TaskDescription = taskDescription.get().toString(),
+                GoingWith = GoingWithEng.get(),
+                StartTime = startTimeDate +" "+ startTimeClock + "AM",
+                CreatedBy = UserProvider.user?.email,
+                TaskNo = 1,
+                TechId = techID.get().toString()
+            )
+            FireStoreUtiles().addTask(task)
             navigator?.onSubmitClick()
         }
 
     }
+
     fun validTask():Boolean{
         var valid=true
         var validtaskdesc=true
         var validtaskdate=true
+        var validateSpinner=true
 
 
         if(taskDescription.get().isNullOrEmpty()){
@@ -48,12 +78,25 @@ class AddTaskViewModel :ViewModel() {
             DateError.set(null)
         }
 
-        if(validtaskdesc && validtaskdate){
+        if(nothingSelected.get()== true){
+            validateSpinner=false
+            spinnerError.set("Please Choose The Engineer")
+        }else{
+            spinnerError.set(null)
+            validateSpinner
+        }
+
+        if(validtaskdesc && validtaskdate && validateSpinner){
             valid = true
         }else{
             valid= false
         }
         return valid
 
+    }
+
+    fun OnNothingSelected(){
+
+        spinnerError.set("Please Choose The Engineer")
     }
 }

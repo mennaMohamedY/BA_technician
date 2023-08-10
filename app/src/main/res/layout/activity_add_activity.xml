@@ -54,18 +54,26 @@
             android:id="@+id/Linear_container"
             android:background="@drawable/borders"
             >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Going To the Task  With"
-                android:textSize="20sp"
-                android:textColor="#75523A"/>
-
-            <Spinner
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/Engs_spinner"
-                android:padding="25dp" />
+                android:id="@+id/SpinnerErrorMsg"
+                Error="@{vm.spinnerError}">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Going To the Task  With"
+                    android:textSize="20sp"
+                    android:textColor="#75523A"/>
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/Engs_spinner"
+                    android:padding="25dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
 
         </androidx.appcompat.widget.LinearLayoutCompat>
         <androidx.appcompat.widget.AppCompatButton

@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.baapplication.MainActivity
 import com.example.baapplication.databinding.ActivityLoginBinding
+import com.example.baapplication.singin.SignInActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.FirebaseException
@@ -59,8 +60,13 @@ class LoginActivity : AppCompatActivity(),NavigatorLogin{
     }
 
     override fun showMsg() {
-        Toast.makeText(this,"Succeed",Toast.LENGTH_LONG).show()
+        Toast.makeText(this,"your account is created successfully!, now Sign In To continue",Toast.LENGTH_LONG).show()
 
+    }
+
+    override fun goToSignInActivity() {
+        val intent=Intent(this,SignInActivity::class.java)
+        startActivity(intent)
     }
 
 

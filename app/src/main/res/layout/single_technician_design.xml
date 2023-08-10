@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="ttn"
+            type="com.example.baapplication.models.NoOfTasks" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,16 +25,27 @@
             android:scaleType="centerCrop"
             app:shapeAppearanceOverlay="@style/rounded_corners"
             android:id="@+id/Person_Img" />
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/Person_Img"
-            android:text="Available"
+            tools:text="Tech Mahmoud"
             android:background="@color/teal"
-            android:padding="7dp"
+            android:padding="4dp"
             android:textAlignment="center"
             android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:id="@+id/tech_name" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tech_name"
+            android:text="Available"
+            android:background="@color/teal"
+            android:padding="2dp"
+            android:textAlignment="center"
+            android:textSize="13sp"
             android:textStyle="bold"
             android:textColor="@color/white"
             android:id="@+id/available_or_busy" />
@@ -54,11 +67,22 @@
             app:layout_constraintTop_toBottomOf="@id/Go_to_task"
             android:layout_margin="9dp"
             android:background="@drawable/rounded_borders"
-            android:text="No of Tasks:"
-            android:id="@+id/no_of_tasks"
+            android:text="view Tasks"
+            android:id="@+id/view_tasks"
             android:textColor="@color/white"
             android:backgroundTint="@color/teal" />
-
-
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/view_tasks"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/rounded_borders_addtask"
+            android:layout_margin="9dp"
+            tools:text="No of Tasks"
+            android:text="@={ttn.no_ofTask}"
+            android:id="@+id/no_of_tasks"
+            android:textColor="@color/white"
+             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

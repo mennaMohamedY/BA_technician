@@ -20,7 +20,7 @@ val EMAIL_ADDRESS: Pattern = Pattern.compile(
             "\\@" +
             "bibalex" +
             "\\." +
-            "org"
+            "dom"
 )
 
 fun checkEmailAddress(email: String): Boolean {

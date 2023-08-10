@@ -1,11 +1,21 @@
 package com.example.baapplication.models
 
+import android.os.Parcel
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+//@Parcelize
 data class TaskDetails(
-    val TaskDescription:String,
-    val GoingWith:String,
-    val StartTime:String,
-    val EndTask:String,
-    val CreatedBy:String,
-    val TaskId:String,
-    val TaskNo:Int
+    var TaskDescription:String?=null,
+    var GoingWith:String?=null,
+    var StartTime:String?=null,
+    var EndTask:String?=null,
+    var CreatedBy:String?=null,
+    var TaskId:String?=null,
+    var TaskNo:Int?=null,
+    var TechId:String?=null
 )
+    //:Parcelable{
+
+
+
