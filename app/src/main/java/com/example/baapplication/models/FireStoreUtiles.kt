@@ -9,6 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.example.baapplication.models.User
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.dataObjects
+import java.security.AllPermission
 
 class FireStoreUtiles {
     //singleton
@@ -45,15 +46,21 @@ class FireStoreUtiles {
         return docRef.set(technician)
     }
 
-    fun getAllTechnicians():Task<QuerySnapshot>{
-        val Allcollection=getCollectionRef(TechniciansCollectionName).get()
-        return Allcollection
+    fun getTechnician(technicianID:String):Task<DocumentSnapshot>{
+        val Allcollection=getCollectionRef(TechniciansCollectionName).document(technicianID)
+        return Allcollection.get()
 
         /*
         * it.result.toObjects(TechDataClass)
         * in vm val roomsliveData=MutableLiveData<List<Room>>()
         * */
     }
+    fun updateTechOnDataBase(technicianID: String,OnTask:Boolean,CreatedBy:String){
+        //val techs=getCollectionRef(TechniciansCollectionName).document(technicianID).update("onTask",OnTask)
+        val techs=getCollectionRef(TechniciansCollectionName).document(technicianID).update(mapOf("onTask" to OnTask,"taskCreatedBy" to CreatedBy))
+
+    }
+
 
     fun addTask(task:TaskDetails):Task<Void>{
         var TechRef=getCollectionRef(TechniciansCollectionName).document(task.TechId!!)
@@ -67,6 +74,14 @@ class FireStoreUtiles {
         var taskDoc=Tasks.document()
         task.TaskId = taskDoc.id!!
         return taskDoc.set(task)
+    }
+    fun getAllTech():Task<QuerySnapshot>{
+        val techs=getCollectionRef(TechniciansCollectionName).get()
+        return techs
+    }
+    fun getTecs():CollectionReference{
+        val techs=getCollectionRef(TechniciansCollectionName)
+        return techs
     }
 
     fun getTechTasks(TechId:String):CollectionReference{

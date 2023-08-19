@@ -48,156 +48,180 @@
             android:orientation="horizontal"
             android:id="@+id/top_guidLine"
             app:layout_constraintGuide_percent="0.25" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             app:layout_constraintTop_toBottomOf="@id/top_guidLine"
             app:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/UserName_txt"
-            android:layout_margin="12dp"
-            android:text="Email"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="@color/lighterBlue" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/UserName_txt"
-            android:layout_margin="15dp"
-            android:background="@drawable/rounded_input_borders"
-            android:id="@+id/userName_editText"
-            Error="@{vm.userNameError}">
-
-            <EditText
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="vertical"
+            android:id="@+id/scroolling"
+            >
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_input_borders"
-                android:hint="Enter your Email"
-                android:text="@={vm.userName}"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="match_parent"
+                android:id="@+id/innerconstrain">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/UserName_txt"
+                    android:layout_margin="12dp"
+                    android:text="Email"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/lighterBlue" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/userName_editText"
-            app:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/MobileNumber_txt"
-            android:layout_margin="12dp"
-            android:text="Phone Number"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="@color/lighterBlue" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/UserName_txt"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/rounded_input_borders"
+                    android:id="@+id/userName_editText"
+                    Error="@{vm.userNameError}">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/MobileNumber_txt"
-            android:layout_margin="15dp"
-            android:background="@drawable/rounded_input_borders"
-            android:id="@+id/phoneNumber_editText"
-            Error="@{vm.phoneNumberError}">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_input_borders"
+                        android:hint="Enter your Email"
+                        android:text="@={vm.userName}"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_input_borders"
-                android:hint="Enter your Phone Number"
-                android:text="@={vm.phoneNumber}"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/userName_editText"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:id="@+id/MobileNumber_txt"
+                    android:layout_margin="12dp"
+                    android:text="Phone Number"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/lighterBlue" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/phoneNumber_editText"
-            app:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/password_txt"
-            android:layout_margin="12dp"
-            android:text="password"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="@color/lighterBlue" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/MobileNumber_txt"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/rounded_input_borders"
+                    android:id="@+id/phoneNumber_editText"
+                    Error="@{vm.phoneNumberError}">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/password_txt"
-            android:layout_margin="15dp"
-            android:background="@drawable/rounded_input_borders"
-            android:id="@+id/password_editText"
-            Error="@{vm.passwordError}">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_input_borders"
+                        android:hint="Enter your Phone Number"
+                        android:text="@={vm.phone_nNumber}"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:text="@={vm.password}"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_input_borders"
-                android:inputType="textPassword"
-                android:hint="Enter Password" />
-        </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/phoneNumber_editText"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:id="@+id/password_txt"
+                    android:layout_margin="12dp"
+                    android:text="password"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/lighterBlue" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/password_editText"
-            app:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/Repassword_txt"
-            android:layout_margin="12dp"
-            android:text="confirm password"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="@color/lighterBlue" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/password_txt"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/rounded_input_borders"
+                    android:id="@+id/password_editText"
+                    Error="@{vm.passwordError}">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/Repassword_txt"
-            android:layout_margin="15dp"
-            android:background="@drawable/rounded_input_borders"
-            android:id="@+id/Repassword_editText"
-            Error="@{vm.repasswordError}">
+                    <EditText
+                        android:text="@={vm.password}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_input_borders"
+                        android:inputType="textPassword"
+                        android:hint="Enter Password"
+                        android:drawableEnd="@drawable/icon_remove_red_eye"
+                        android:onClickListener="@{()->vm.TogglePassword()}"
+                        android:id="@+id/p_tview"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_input_borders"
-                android:inputType="textPassword"
-                android:hint="Re-Enter Password"
-                android:text="@={vm.repassword}"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/password_editText"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:id="@+id/Repassword_txt"
+                    android:layout_margin="12dp"
+                    android:text="confirm password"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/lighterBlue" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/Repassword_editText"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:background="@drawable/sign_inbtn"
-            android:layout_margin="12dp"
-            android:text="Register"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
-            android:paddingHorizontal="17dp"
-            android:id="@+id/reisterBtn"
-            android:onClickListener="@{()->vm.Register()}"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/reisterBtn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:id="@+id/goToSignIN"
-            android:layout_margin="9dp"
-            android:text="Already Registered, Sign In"
-            android:textSize="14sp"
-            android:textColor="@color/lighterBlue"
-            android:onClickListener="@{()->vm.NavigateToSignI()}"/>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/Repassword_txt"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/rounded_input_borders"
+                    android:id="@+id/Repassword_editText"
+                    Error="@{vm.repasswordError}">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_input_borders"
+                        android:inputType="textPassword"
+                        android:hint="Re-Enter Password"
+                        android:id="@+id/rp_tview"
+                        android:onClickListener="@{()->vm.RTogglePassword()}"
+                        android:drawableEnd="@drawable/icon_remove_red_eye"
+                        android:text="@={vm.repassword}"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/Repassword_editText"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:background="@drawable/rounded_borders_addtask"
+                    android:layout_margin="12dp"
+                    android:text="Register"
+                    android:textColor="@color/white"
+                    android:textAllCaps="false"
+                    android:paddingHorizontal="17dp"
+                    android:id="@+id/reisterBtn"
+                    android:onClickListener="@{()->vm.Register()}"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/reisterBtn"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:id="@+id/goToSignIN"
+                    android:layout_margin="9dp"
+                    android:text="Already Registered, Sign In"
+                    android:textSize="14sp"
+                    android:textColor="@color/lighterBlue"
+                    android:onClickListener="@{()->vm.NavigateToSignI()}"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </ScrollView>
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

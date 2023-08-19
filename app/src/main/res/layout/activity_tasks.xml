@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Tasks "
-            android:background="@color/teal"
+            android:background="@drawable/side_nav_bar"
             android:padding="9dp"
             android:textColor="@color/white"
             android:textStyle="italic"

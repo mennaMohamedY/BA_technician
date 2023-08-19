@@ -8,4 +8,11 @@ interface NavigatorLogin {
     fun goToLoginActivity()
     fun showMsg()
     fun goToSignInActivity()
+
+    fun showPassword()
+    fun hidePassword()
+
+
+    fun showRPassword()
+    fun hideRPassword()
 }

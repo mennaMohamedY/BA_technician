@@ -1,8 +1,11 @@
 package com.example.baapplication.models
 
 data class TechDataClass(
-    val techImg:Int?=null,
-    val techName:String?=null,
+    var techImg:Int?=null,
+    var techName:String?=null,
     var techNo_ofTasks:String?=null,
-    val TechID:String?=null
+    var TechID:String?=null,
+    var onTask:Boolean?=null,
+    var taskCreatedBy:String?=null,
+
     )

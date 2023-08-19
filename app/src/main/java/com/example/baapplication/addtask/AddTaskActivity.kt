@@ -23,8 +23,8 @@ import java.text.SimpleDateFormat
 class AddTaskActivity : AppCompatActivity(),TaskNavigator {
 
     companion object{
-        var TechnID:Int?=null
-        fun getInstance(TechPosition:Int):AddTaskActivity{
+        var TechnID:String?=null
+        fun getInstance(TechPosition:String):AddTaskActivity{
             TechnID=TechPosition
             return AddTaskActivity()
         }
@@ -66,6 +66,8 @@ class AddTaskActivity : AppCompatActivity(),TaskNavigator {
         Date=simpleFormat!!.format(calendar!!.time)
         simpleDateFormat2= SimpleDateFormat("HH:mm:SS")
         Date2=simpleDateFormat2!!.format(calendar!!.time)
+        addTaskVM.techID.set(TechnID)
+
 
 
         dataBindingTaskDetails.startTimeBtn.setOnClickListener({
@@ -85,7 +87,8 @@ class AddTaskActivity : AppCompatActivity(),TaskNavigator {
 
                 //add technician id
                 //mlhash 3laqa any ahoutaha hena bs 2olt ahotha hena y3ne blmara
-                getTechIDFromPosition(TechnID!!)
+               // getTechIDFromPosition(TechnID!!)
+                addTaskVM.techID.set(TechnID)
 
                 if(position == 0){
                     addTaskVM.nothingSelected.set(true)
@@ -134,6 +137,10 @@ class AddTaskActivity : AppCompatActivity(),TaskNavigator {
     override fun onSubmitClick() {
         getSelectedEng()
         finish()
+    }
+
+    override fun showError(errormsg: String) {
+        Toast.makeText(this@AddTaskActivity,"On Task Failed${errormsg}",Toast.LENGTH_LONG).show()
     }
 
     fun getTechIDFromPosition(position:Int){

@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -30,6 +32,8 @@ class LoginActivity : AppCompatActivity(),NavigatorLogin{
     var auth:FirebaseAuth?=null
     val phoneNumber:String?=null
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_login)
@@ -41,6 +45,7 @@ class LoginActivity : AppCompatActivity(),NavigatorLogin{
         viewModelLogin.navigator=this
 
     }
+
 
     override fun goToHomeActivity() {
         val intent=Intent(this,MainActivity::class.java)
@@ -67,6 +72,22 @@ class LoginActivity : AppCompatActivity(),NavigatorLogin{
     override fun goToSignInActivity() {
         val intent=Intent(this,SignInActivity::class.java)
         startActivity(intent)
+    }
+
+    override fun showPassword() {
+        dataBindingLogin.pTview.transformationMethod=HideReturnsTransformationMethod.getInstance()
+    }
+
+    override fun hidePassword() {
+        dataBindingLogin.pTview.transformationMethod=PasswordTransformationMethod.getInstance()
+    }
+
+    override fun showRPassword() {
+        dataBindingLogin.rpTview.transformationMethod=HideReturnsTransformationMethod.getInstance()
+    }
+
+    override fun hideRPassword() {
+        dataBindingLogin.rpTview.transformationMethod=PasswordTransformationMethod.getInstance()
     }
 
 

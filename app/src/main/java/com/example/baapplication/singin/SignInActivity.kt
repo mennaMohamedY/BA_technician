@@ -3,6 +3,8 @@ package com.example.baapplication.singin
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
@@ -10,6 +12,7 @@ import com.example.baapplication.MainActivity
 import com.example.baapplication.R
 import com.example.baapplication.databinding.ActivitySignInBinding
 import com.example.baapplication.login.LoginActivity
+import com.example.baapplication.sidrawe.SideDrawerActivity
 
 class SignInActivity : AppCompatActivity(),SignInNavigator {
 
@@ -45,6 +48,20 @@ class SignInActivity : AppCompatActivity(),SignInNavigator {
 
     override fun showError(errorMsg: String) {
         Toast.makeText(this," ${errorMsg}",Toast.LENGTH_LONG).show()
+    }
+
+    override fun navigateToSideDrawer() {
+        val intent=Intent(this,SideDrawerActivity::class.java)
+        startActivity(intent)
+    }
+
+    override fun showPassword() {
+        signInDataBinding.pTxtview.transformationMethod=HideReturnsTransformationMethod.getInstance()
+
+    }
+
+    override fun hidePassword() {
+        signInDataBinding.pTxtview.transformationMethod=PasswordTransformationMethod.getInstance()
     }
 
     fun checkIfCurrentUserIsAuthenticatedUSer(){

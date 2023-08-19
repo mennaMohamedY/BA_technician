@@ -13,13 +13,25 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
     <style name="hidetoolBar" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
     <style name="rounded_corners">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">18%</item>
         <item name="cornerSizeTopLeft">18%</item>
+
     </style>
+
+    <style name="hidetoolBar.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="hidetoolBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="hidetoolBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

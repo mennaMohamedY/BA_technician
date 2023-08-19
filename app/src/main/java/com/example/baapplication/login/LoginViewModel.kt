@@ -22,7 +22,7 @@ class LoginViewModel:ViewModel() {
     var UserName=ObservableField<String?>()
     var UserNameError=ObservableField<String?>()
 
-    val phoneNumber=ObservableField<String?>()
+    val phone_nNumber=ObservableField<String?>()
     val phoneNumberError=ObservableField<String?>()
 
 
@@ -33,6 +33,7 @@ class LoginViewModel:ViewModel() {
     val RepasswordError=ObservableField<String>()
     var navigator:NavigatorLogin?=null
     val db = Firebase.firestore
+    var toggle=0
 
     val auth= FirebaseAuth.getInstance()
     val options = PhoneAuthOptions.newBuilder(auth)
@@ -58,14 +59,16 @@ class LoginViewModel:ViewModel() {
     private fun insertUserToDataBase(userId:String) {
         val user=User(
             UserName.get(),
-            phoneNumber.get(),
+            phone_nNumber.get(),
             password.get()!!,
             id = userId
         )
         FireStoreUtiles().insertUserToDataBase(user).addOnCompleteListener({
             if(it.isSuccessful){
                // navigator?.goToHomeActivity()
+                Log.e("currentUser","${user} phoneNumber ${phone_nNumber}")
                 navigator?.goToSignInActivity()
+
             }else{
                 navigator?.showError(it.exception?.localizedMessage.toString()+"Error inFireStoreUtiles")
                 //navigator?.goToLoginActivity()
@@ -101,6 +104,22 @@ class LoginViewModel:ViewModel() {
     fun NavigateToSignI(){
         navigator?.goToSignInActivity()
     }
+    fun TogglePassword(){
+        toggle+=1
+        if(toggle%2 !=0){
+            navigator?.showPassword()
+        }else{
+            navigator?.hidePassword()
+        }
+    }
+    fun RTogglePassword(){
+        toggle+=1
+        if(toggle%2 !=0){
+            navigator?.showRPassword()
+        }else{
+            navigator?.hideRPassword()
+        }
+    }
 
 
     fun validation():Boolean{
@@ -124,11 +143,11 @@ class LoginViewModel:ViewModel() {
         }
     }
 
-    if(phoneNumber.get().isNullOrEmpty()){
+    if(phone_nNumber.get().isNullOrEmpty()){
         valid2=false
         phoneNumberError.set("Please Enter Your PhoneNumber")
-    }else if(phoneNumber!=null){
-        if(CheckPhoneNum(phoneNumber.get()!!)){
+    }else if(phone_nNumber!=null){
+        if(CheckPhoneNum(phone_nNumber.get()!!)){
             valid2= true
             phoneNumberError.set(null)
         }else{

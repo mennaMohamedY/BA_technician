@@ -19,8 +19,13 @@ class SignInViewModel:ViewModel() {
 
     var currentUserEmail: String? = null
     var currentUserPassword: String? = null
+    var currentUserphoneNumber:String?=null
+    var currentUserID:String?=null
+    var currentUser :User?=null
 
     var authenticated_user= false
+
+    var toggle=0
 
     //var allAuthUsers= MutableList<User>()
 
@@ -42,6 +47,15 @@ class SignInViewModel:ViewModel() {
         navigator?.navigateToRegisterActivity()
     }
 
+    fun TogglePassword(){
+        toggle+=1
+        if(toggle %2 != 0){
+            navigator?.showPassword()
+        }else{
+            navigator?.hidePassword()
+        }
+    }
+
     fun valid(): Boolean {
         var validemail = false
         if (email.get().isNullOrEmpty()) {
@@ -60,11 +74,23 @@ class SignInViewModel:ViewModel() {
                     validemail = true
                     //navigator?.navigateToHomeActivity()
                     currentUserEmail = it.result.user?.email
-                    //currentUserPassword = it.result.user?.pa
+                    //currentUserPassword = password.get()
+                    currentUserID = it.result.user?.uid
+                    getphoneNumber(currentUserID!!)
+
+                    currentUser= User(currentUserEmail,currentUserphoneNumber,currentUserPassword,currentUserID)
+                    UserProvider.user=currentUser
+
                     navigator?.showError("current Email is ${currentUserEmail}")
                     checkIfCurrentUserIsAuthenticatedUSer(currentUserEmail!!)
                     if (authenticated_user==false){
-                        navigator?.showError("you don't have privilage to add tasks you can only view your tasks or add private tasks to be done")
+                        navigator?.showError("you don't have privilage to add tasks you can only view your tasks or add private tasks to be" +
+                                " done")
+                        navigator?.showError("${currentUser}")
+                        navigator?.showError("${currentUser}")
+
+                        Log.e("userProvider","${currentUser}")
+                        navigator?.navigateToSideDrawer()
 
                     }
                  /*   if(checkIfCurrentUserIsAuthenticatedUSer(currentUserEmail!!)) {
@@ -113,6 +139,20 @@ class SignInViewModel:ViewModel() {
 
         return validemail
 
+    }
+    fun getphoneNumber(U_id:String){
+        FireStoreUtiles().getUserFromDataBase(U_id).addOnCompleteListener {
+            if (it.isSuccessful){
+                val doc=it.result.toObject(User::class.java)
+                currentUserphoneNumber=doc?.phoneNumber
+                currentUserEmail = doc?.email
+                currentUserPassword = password.get()
+
+                currentUser= User(currentUserEmail,currentUserphoneNumber,currentUserPassword,currentUserID)
+                UserProvider.user=currentUser
+                Log.e("phoneNumber","phone ${currentUserphoneNumber}")
+            }
+        }
     }
 
     fun checkIfCurrentUserIsAuthenticatedUSer(currentEmail:String):Boolean{

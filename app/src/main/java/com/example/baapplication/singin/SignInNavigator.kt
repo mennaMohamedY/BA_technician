@@ -5,6 +5,10 @@ interface SignInNavigator {
     fun navigateToHomeActivity()
     fun navigateToRegisterActivity()
     fun showError(errorMsg:String)
+    fun navigateToSideDrawer()
+
+    fun showPassword()
+    fun hidePassword()
 
 
 }

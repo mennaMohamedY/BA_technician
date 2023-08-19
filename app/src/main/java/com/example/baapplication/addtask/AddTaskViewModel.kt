@@ -49,8 +49,26 @@ class AddTaskViewModel :ViewModel() {
                 TechId = techID.get().toString()
             )
             FireStoreUtiles().addTask(task)
+            assignONTask(techID.get().toString())
             navigator?.onSubmitClick()
         }
+
+    }
+    fun assignONTask(techID:String){
+        techTaskProvider.techId=techID
+        techTaskProvider.techOnTask=true
+
+       /* FireStoreUtiles().getTechnician(techID).addOnCompleteListener {
+            if (it.isSuccessful){
+                val doc = it.result.toObject(TechDataClass::class.java)
+                doc?.onTask=true
+            }else{
+                navigator?.showError(it.exception!!.localizedMessage)
+            }
+        }
+
+        */
+        FireStoreUtiles().updateTechOnDataBase(techID,true,UserProvider.user?.email!!)
 
     }
 

@@ -15,6 +15,22 @@
         android:theme="@style/hidetoolBar"
         tools:targetApi="31">
         <activity
+            android:name=".bottoshee.AddTodoActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".sidrawe.SideDrawerActivity"
+            android:exported="false"
+            android:label="@string/title_activity_side_drawer"
+            android:theme="@style/hidetoolBar.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".singin.SignInActivity"
             android:exported="false">
             <meta-data

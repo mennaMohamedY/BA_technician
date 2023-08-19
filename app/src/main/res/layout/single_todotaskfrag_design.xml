@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.example.baapplication.todotasks.TodoTasksFragViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_input_borders"
+        android:layout_margin="8dp">
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/task_details_btn"
+            android:id="@+id/scroll_describe">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_description"
+                tools:text="Go To Open Arwa and rebot All devices "
+                android:textSize="20sp"
+                android:text=""
+                android:textStyle="bold"
+                android:textColor="@color/black"
+
+                android:layout_margin="5dp" />
+        </ScrollView>
+
+
+        <ImageView
+            android:id="@+id/task_details_btn"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:src="@drawable/icon_check_box"
+            app:layout_constraintStart_toEndOf="@id/scroll_describe"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="visible"/>
+
+        <TextView
+            android:text=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/scroll_describe"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="11:55 AM 8/2/2023"
+            android:textSize="17sp"
+            android:layout_marginBottom="6dp"
+            android:textColor="@color/black"
+            android:layout_margin="4sp"
+
+            android:id="@+id/timee" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

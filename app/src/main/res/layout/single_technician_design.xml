@@ -1,25 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    >
 
     <data>
         <variable
             name="ttn"
             type="com.example.baapplication.models.NoOfTasks" />
+        <variable
+            name="techniciann"
+            type="com.example.baapplication.models.TechDataClass" />
+        <variable
+            name="techsVM"
+            type="com.example.baapplication.adapter.AllTechniciansViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="180dp"
-        android:layout_margin="12dp"
+        android:layout_width="160dp"
+        android:layout_margin="8dp"
         android:layout_height="wrap_content"
         android:paddingBottom="35dp"
-        android:background="@drawable/rounded_borders">
+        android:background="@drawable/rounded_borders"
+        >
 
         <com.google.android.material.imageview.ShapeableImageView
             android:layout_width="match_parent"
             android:layout_height="90dp"
-            android:src="@drawable/james"
+            tools:src="@drawable/james"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:scaleType="centerCrop"
@@ -29,20 +37,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/Person_Img"
-            tools:text="Tech Mahmoud"
-            android:background="@color/teal"
+            tools:text="tech mahmoud"
+            tools:background="@drawable/side_nav_bar"
             android:padding="4dp"
             android:textAlignment="center"
             android:textSize="14sp"
             android:textStyle="bold"
+            ChangeBackgroundColor="@{techsVM.changbg}"
             android:textColor="@color/white"
             android:id="@+id/tech_name" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            tools:background="@drawable/side_nav_bar"
+            android:text="@={techsVM.showAvailability}"
             app:layout_constraintTop_toBottomOf="@id/tech_name"
-            android:text="Available"
-            android:background="@color/teal"
             android:padding="2dp"
             android:textAlignment="center"
             android:textSize="13sp"
@@ -55,22 +64,24 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/available_or_busy"
             android:layout_margin="9dp"
-            android:background="@drawable/rounded_borders_addtask"
-            android:text="Add Task"
+            tools:background="@drawable/rounded_borders_addtask"
+            tools:text="Add Task"
+            ChangeBackgroundBTNColor="@{techsVM.changeBTNbg}"
+            AddOrEndTaskBtn="@{techsVM.showStartEndTask}"
             android:id="@+id/Go_to_task"
             android:textColor="@color/white"
-             />
+            />
 
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/Go_to_task"
             android:layout_margin="9dp"
-            android:background="@drawable/rounded_borders"
+            android:background="@drawable/rounded_borders_addtask"
             android:text="view Tasks"
             android:id="@+id/view_tasks"
             android:textColor="@color/white"
-            android:backgroundTint="@color/teal" />
+             />
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -80,9 +91,8 @@
             android:background="@drawable/rounded_borders_addtask"
             android:layout_margin="9dp"
             tools:text="No of Tasks"
-            android:text="@={ttn.no_ofTask}"
             android:id="@+id/no_of_tasks"
             android:textColor="@color/white"
-             />
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -13,6 +13,7 @@
     <color name="error">#B00020</color>
     <color name="blue">#2B5CA3</color>
     <color name="lighterBlue">#015F83</color>
+    <color name="centerColor">#009688</color>
 
 
 </resources>
