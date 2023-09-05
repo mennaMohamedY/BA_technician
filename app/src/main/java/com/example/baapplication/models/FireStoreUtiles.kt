@@ -60,21 +60,42 @@ class FireStoreUtiles {
         val techs=getCollectionRef(TechniciansCollectionName).document(technicianID).update(mapOf("onTask" to OnTask,"taskCreatedBy" to CreatedBy))
 
     }
+    fun updateTechEndTimeOnDataBase(technicianID: String,endTime:String,TaskID:String,month:String){
+        //val techs=getCollectionRef(TechniciansCollectionName).document(technicianID).update("onTask",OnTask)
+        val techs=getCollectionRef(TechniciansCollectionName).document(technicianID).collection(month)
+            .document(TaskID).update("endTask",endTime)
 
+    }
+    fun getMonthCollectionRef(collectionName:String):CollectionReference{
+        val database=FirebaseFirestore.getInstance()
+        val collectionRef=database.collection(collectionName)
+        return collectionRef
+    }
 
-    fun addTask(task:TaskDetails):Task<Void>{
+    fun addTask(task:TaskDetails,monthNAme:String):Task<Void>{
         var TechRef=getCollectionRef(TechniciansCollectionName).document(task.TechId!!)
 
         //collection 3lshan yeshel list of documents "list of tasks"
         //it's not a single task for each technician
         //so the next line says make a collection with name tasks
-        var Tasks=TechRef.collection(TasksCollection)
+        //var Tasks=TechRef.collection(TasksCollection)
+        var Tasks=TechRef.collection(monthNAme!!)
+
 
 
         var taskDoc=Tasks.document()
         task.TaskId = taskDoc.id!!
+        techTaskProvider.taskID=taskDoc.id
+        techTaskProvider.taskid=ArrayList()
+        techTaskProvider.taskid?.add(taskDoc.id)
+        techTaskProvider.taskid?.add(task.TechId!!)
+
+
+
         return taskDoc.set(task)
     }
+
+
     fun getAllTech():Task<QuerySnapshot>{
         val techs=getCollectionRef(TechniciansCollectionName).get()
         return techs
@@ -87,10 +108,22 @@ class FireStoreUtiles {
     fun getTechTasks(TechId:String):CollectionReference{
         return getCollectionRef(TechniciansCollectionName).document(TechId).collection(TasksCollection)
     }
-    fun getAllTasks(TechId:String):Task<QuerySnapshot>{
+    fun getAllMonths(TechId: String):Task<QuerySnapshot>{
+        val monthsref=getCollectionRef(TechId).get()
+        return monthsref
+    }
+    fun getAllTasksInMonth(TechId: String,Month: String):Task<QuerySnapshot>{
+        var tasksRef=getCollectionRef(TechniciansCollectionName).document(TechId).collection(Month)
+        return tasksRef.get()
+
+
+    }
+    fun getAllTasks(TechId:String,Month:String):Task<QuerySnapshot>{
         //var TechRef=getCollectionRef(TechniciansCollectionName).document(tech_id)
        // var Tasks=TechRef.collection(TasksCollection)
-        val tasksRef= getCollectionRef(TechniciansCollectionName).document(TechId).collection(TasksCollection)
+        //val tasksRef= getCollectionRef(TechniciansCollectionName).document(TechId).collection(TasksCollection)
+        val tasksRef= getCollectionRef(TechniciansCollectionName).document(TechId).collection(Month)
+
         return tasksRef.get()
 
        // return Tasks.get()

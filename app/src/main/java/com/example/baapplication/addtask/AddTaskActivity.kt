@@ -41,6 +41,7 @@ class AddTaskActivity : AppCompatActivity(),TaskNavigator {
 
     var selEng:String?=null
     var EngPosition:Int?=-1
+    var taskid:String?=null
 
 
 
@@ -140,12 +141,17 @@ class AddTaskActivity : AppCompatActivity(),TaskNavigator {
     }
 
     override fun showError(errormsg: String) {
-        Toast.makeText(this@AddTaskActivity,"On Task Failed${errormsg}",Toast.LENGTH_LONG).show()
+      //  Toast.makeText(this@AddTaskActivity,"On Task Failed${errormsg}",Toast.LENGTH_LONG).show()
+    }
+
+    override fun taskId(tskID: String) {
+        taskid=tskID
+
     }
 
     fun getTechIDFromPosition(position:Int){
         if(position==-1){
-            Toast.makeText(this@AddTaskActivity,"Problem occured couldn't get the tech id",Toast.LENGTH_LONG).show()
+          //  Toast.makeText(this@AddTaskActivity,"Problem occured couldn't get the tech id",Toast.LENGTH_LONG).show()
         }else if (position==0){
             addTaskVM.techID.set("Mahmoud01")
         }else if (position==1){

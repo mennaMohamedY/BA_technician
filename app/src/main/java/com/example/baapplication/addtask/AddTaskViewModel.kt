@@ -1,5 +1,7 @@
 package com.example.baapplication.addtask
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.databinding.ObservableField
 import androidx.databinding.adapters.AdapterViewBindingAdapter.OnNothingSelected
 import androidx.lifecycle.MutableLiveData
@@ -32,9 +34,11 @@ class AddTaskViewModel :ViewModel() {
 
 
     var validate=ObservableField<Boolean>()
+    var monthsArray:MutableList<Months>? = null
 
 
 
+    @RequiresApi(Build.VERSION_CODES.N)
     fun createTask(){
         if(validTask()){
 
@@ -48,12 +52,60 @@ class AddTaskViewModel :ViewModel() {
                 TaskNo = 1,
                 TechId = techID.get().toString()
             )
+            /*
             FireStoreUtiles().addTask(task)
             assignONTask(techID.get().toString())
             navigator?.onSubmitClick()
+
+             */
+            var month=startTimeDate?.split("-")
+            var currentMonth=month?.get(1)
+            //var currentMonth=NoOfTasks(month?.get(1))
+            FireStoreUtiles().addTask(task,currentMonth!!)
+            assignONTask(techID.get().toString())
+            techTaskProvider.taskID=task.TaskId
+            techTaskProvider.taskid?.add(task.TaskId!!)
+            techTaskProvider.ti?.putIfAbsent("Mahmoud01",techTaskProvider.taskID!!)
+            navigator?.onSubmitClick()
+
+            //getAllMonths(currentMonth!!,task)
+            //assignONTask(techID.get().toString())
+            //navigator?.onSubmitClick()
+
+
+
+
         }
 
     }
+    /*
+    fun getAllMonths(currenrmonth:String,task:TaskDetails){
+        var exist=false
+        FireStoreUtiles().getAllMonths().addOnCompleteListener {
+            if(it.isSuccessful){
+                monthsArray=mutableListOf()
+                monthsArray=it.result.toObjects(Months::class.java)
+                exist=true
+            }else{
+            }
+        }
+        if(monthsArray?.size!! >=1){
+            for(i in 0..monthsArray?.size!!-1){
+                if (currenrmonth==monthsArray!![i].monthName){
+                    exist=true
+                    FireStoreUtiles().addTasksInMonths(task,currenrmonth)
+                }
+            }
+
+        }else{
+            exist=false
+            FireStoreUtiles().addMonth(task,currenrmonth)
+            FireStoreUtiles().addTasksInMonths(task,currenrmonth)
+
+        }
+    }
+
+     */
     fun assignONTask(techID:String){
         techTaskProvider.techId=techID
         techTaskProvider.techOnTask=true
@@ -66,7 +118,6 @@ class AddTaskViewModel :ViewModel() {
                 navigator?.showError(it.exception!!.localizedMessage)
             }
         }
-
         */
         FireStoreUtiles().updateTechOnDataBase(techID,true,UserProvider.user?.email!!)
 

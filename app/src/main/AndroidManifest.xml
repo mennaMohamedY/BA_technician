@@ -15,6 +15,20 @@
         android:theme="@style/hidetoolBar"
         tools:targetApi="31">
         <activity
+            android:name=".tasksinmonths.TasksInMonthsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".nooftasks.NoOfTasksActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".bottoshee.AddTodoActivity"
             android:exported="false">
             <meta-data
