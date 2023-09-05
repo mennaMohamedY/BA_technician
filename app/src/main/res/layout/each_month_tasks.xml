@@ -1,30 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="task"
-            type="com.example.baapplication.models.TaskDetails" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_input_borders"
-        android:layout_margin="8dp">
+        android:layout_margin="16dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="Description:"
+            android:text="Task Description:"
             android:textStyle="bold"
             android:textSize="20sp"
             android:layout_marginBottom="6dp"
-            android:textColor="@color/lighterBlue"
+            android:textColor="@color/black"
             android:layout_margin="4sp"
             android:id="@+id/taskDescription_txt" />
 
@@ -34,6 +31,8 @@
             app:layout_constraintTop_toBottomOf="@id/taskDescription_txt"
             app:layout_constraintStart_toStartOf="parent"
             android:orientation="vertical"
+            android:scrollbarStyle="insideOverlay"
+            android:layout_marginHorizontal="3dp"
             android:id="@+id/scroll_describe">
 
             <TextView
@@ -42,7 +41,6 @@
                 android:id="@+id/task_description"
                 tools:text="Go To Open Arwa and rebot All devices "
                 android:textSize="20sp"
-                android:text="@={task.taskDescription}"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:layout_margin="5dp" />
@@ -56,24 +54,21 @@
             android:textStyle="bold"
             android:textSize="17sp"
             android:layout_marginBottom="6dp"
-            android:textColor="@color/lighterBlue"
+            android:textColor="@color/black"
             android:layout_margin="4sp"
             android:id="@+id/taskCreatedBy_txt" />
         <TextView
-            android:text="@={task.createdBy}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/scroll_describe"
             app:layout_constraintStart_toEndOf="@id/taskCreatedBy_txt"
+            android:layout_marginLeft="12dp"
             tools:text="Menna Yousef"
             android:textSize="17sp"
             android:layout_marginBottom="6dp"
             android:textColor="@color/black"
-            android:layout_margin="4sp"
-            android:layout_marginLeft="10dp"
-
+            android:layout_marginTop="4dp"
             android:id="@+id/taskCreatedBy" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -83,7 +78,7 @@
             android:textStyle="bold"
             android:textSize="17sp"
             android:layout_marginBottom="6dp"
-            android:textColor="@color/lighterBlue"
+            android:textColor="@color/black"
             android:layout_margin="4sp"
             android:id="@+id/goingwith_txt" />
         <TextView
@@ -93,7 +88,6 @@
             app:layout_constraintStart_toEndOf="@id/goingwith_txt"
             android:layout_marginLeft="12dp"
             tools:text="Eng : Abbas"
-            android:text="@={task.goingWith}"
             android:textSize="17sp"
             android:layout_marginBottom="6dp"
             android:textColor="@color/black"
@@ -110,7 +104,7 @@
             android:textStyle="bold"
             android:textSize="17sp"
             android:layout_marginBottom="6dp"
-            android:textColor="@color/lighterBlue"
+            android:textColor="@color/black"
             android:layout_margin="4sp"
             android:id="@+id/starttimee_txt" />
         <TextView
@@ -121,7 +115,6 @@
             android:layout_marginLeft="12dp"
             tools:text="11:55 AM 8/2/2023"
             android:textSize="17sp"
-            android:text="@={task.startTime}"
             android:layout_marginBottom="6dp"
             android:textColor="@color/black"
             android:layout_marginTop="4dp"
@@ -137,7 +130,7 @@
             android:textStyle="bold"
             android:textSize="17sp"
             android:layout_marginBottom="6dp"
-            android:textColor="@color/lighterBlue"
+            android:textColor="@color/black"
             android:layout_margin="4sp"
             android:id="@+id/endtimee_txt" />
         <TextView
@@ -148,7 +141,6 @@
             app:layout_constraintStart_toEndOf="@id/endtimee_txt"
             android:layout_marginLeft="18dp"
             tools:text="11:55 AM 8/2/2023"
-            android:text="@={task.endTask}"
             android:textSize="17sp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="6dp"

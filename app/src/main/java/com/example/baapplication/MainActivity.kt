@@ -17,6 +17,7 @@ import com.example.baapplication.addtask.AddTaskActivity
 import com.example.baapplication.addtask.AddTaskViewModel
 import com.example.baapplication.databinding.ActivityMainBinding
 import com.example.baapplication.models.*
+import com.example.baapplication.nooftasks.NoOfTasksActivity
 import com.example.baapplication.tasks.TasksActivity
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.EventListener
@@ -157,6 +158,28 @@ class MainActivity : AppCompatActivity() {
                 //viewmodelTechnicians.EndTimeDate=
                 Toast.makeText(this@MainActivity,"Task Ended at ${Date} at time ${DateClock}",Toast.LENGTH_LONG).show()
                 Log.e("endTask","task is ended")
+                /*
+                for(i in 0..techTaskProvider.ti!!.size){
+                    if(!techTaskProvider.ti!!.get(TaskData.TechID).isNullOrEmpty()){
+                        techTaskProvider.ti!!.get(TaskData.TechID!!)?.let {
+                            FireStoreUtiles().updateTechEndTimeOnDataBase(TaskData.TechID!!,Date!!,
+                                it,"09"
+                            )
+                        }
+                    }
+                }
+                 */
+                for(i in 0..techTaskProvider.taskid?.size!!-1){
+                    if (techTaskProvider.taskid!![i]==TaskData.TechID){
+                        val tskid= techTaskProvider.taskid!![i-1]
+                        FireStoreUtiles().updateTechEndTimeOnDataBase(TaskData.TechID!!,DateClock!! + " ${Date}",tskid!!,"09")
+                        val intent=Intent(this@MainActivity,MainActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
+                //val tskid=techTaskProvider.ti?.get("Mahmoud01").toString()
+                //Toast.makeText(this@MainActivity,"${tskid}",Toast.LENGTH_LONG).show()
+                //FireStoreUtiles().updateTechEndTimeOnDataBase(TaskData.TechID!!,DateClock!!,tskid!!,"09")
                 val intent=Intent(this@MainActivity,MainActivity::class.java)
                 startActivity(intent)
             }
@@ -168,6 +191,15 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+        techAdapter.onNumOFTaskClickListener=object :TechniciansAdapter.OnNumOfTasksClickListener{
+            override fun OnNumOfTaskClick(TaskData: TechDataClass, position: Int) {
+                val intent=Intent(this@MainActivity,NoOfTasksActivity.getInstance(TaskData)::class.java)
+                startActivity(intent)
+            }
+
+        }
+        val pp =techPics!!.get(0)
+        Log.e("pp","${pp}")
 
 
         //techAdapter.UpdateOnSubmitChanged(vmprovider?.validate?.get()!!)
@@ -196,11 +228,11 @@ class MainActivity : AppCompatActivity() {
                             finalTechs=mutableListOf()
                             if(doc.document.id=="Mahmoud01"){
                                 var docc=doc.document.toObject(TechDataClass::class.java)
-                                numOfTasks=gg(docc.TechID!!)
+                                //numOfTasks=gg(docc.TechID!!)
                                 val ModifiedTech=TechDataClass(
                                     techImg = techPics!!.get(0),
                                     techName = docc.techName,
-                                    techNo_ofTasks = "Num of Tasks: "+ numOfTasks,
+                                    techNo_ofTasks = "Num of Tasks: ",//+ numOfTasks,
                                     TechID = docc.TechID,
                                     onTask = docc.onTask,
                                     taskCreatedBy = docc.taskCreatedBy)
@@ -217,11 +249,11 @@ class MainActivity : AppCompatActivity() {
 
                             }else if(doc.document.id=="Reda02"){
                                 var docc=doc.document.toObject(TechDataClass::class.java)
-                                numOfTasks=gg(docc.TechID!!)
+                                //numOfTasks=gg(docc.TechID!!)
                                 val ModifiedTech=TechDataClass(
                                     techImg = techPics!!.get(1),
                                     techName = docc.techName,
-                                    techNo_ofTasks = "Num of Tasks: "+ numOfTasks,
+                                    techNo_ofTasks = "Num of Tasks: ",//+ numOfTasks,
                                     TechID = docc.TechID,
                                     onTask = docc.onTask,
                                     taskCreatedBy = docc.taskCreatedBy)
@@ -237,11 +269,11 @@ class MainActivity : AppCompatActivity() {
                                 viewmodelTechnicians.tecchs.value=finalTechs
                             }else if(doc.document.id=="Bahrawy03"){
                                 var docc=doc.document.toObject(TechDataClass::class.java)
-                                numOfTasks=gg(docc.TechID!!)
+                                //numOfTasks=gg(docc.TechID!!)
                                 val ModifiedTech=TechDataClass(
                                     techImg = techPics!!.get(2),
                                     techName = docc.techName,
-                                    techNo_ofTasks = "Num of Tasks: "+ numOfTasks,
+                                    techNo_ofTasks = "Num of Tasks: ",//+ numOfTasks,
                                     TechID = docc.TechID,
                                     onTask = docc.onTask,
                                     taskCreatedBy = docc.taskCreatedBy)
@@ -257,11 +289,11 @@ class MainActivity : AppCompatActivity() {
 
                             }else if(doc.document.id=="Hany04"){
                                 var docc=doc.document.toObject(TechDataClass::class.java)
-                                numOfTasks=gg(docc.TechID!!)
+                                //numOfTasks=gg(docc.TechID!!)
                                 val ModifiedTech=TechDataClass(
                                     techImg = techPics!!.get(3),
                                     techName = docc.techName,
-                                    techNo_ofTasks = "Num of Tasks: "+ numOfTasks,
+                                    techNo_ofTasks = "Num of Tasks: ",//+ numOfTasks,
                                     TechID = docc.TechID,
                                     onTask = docc.onTask,
                                     taskCreatedBy = docc.taskCreatedBy)
@@ -348,6 +380,7 @@ class MainActivity : AppCompatActivity() {
 
 
  */
+    /*
     fun gg(TechID:String):Int{
         FireStoreUtiles().getAllTasks(TechID).addOnCompleteListener({
             if(it.isSuccessful){
@@ -358,6 +391,7 @@ class MainActivity : AppCompatActivity() {
         })
         return numOfTasks!!
     }
+    */
     fun nn(){
         FireStoreUtiles().getAllTech().addOnCompleteListener {
             if(it.isSuccessful){
@@ -390,6 +424,7 @@ class MainActivity : AppCompatActivity() {
         viewmodelTechnicians.tecchs.observe(this){
             techAdapter.UpdateTechsDataClass(it)
         }
+
     }
 
     override fun onStart() {
@@ -406,6 +441,12 @@ class MainActivity : AppCompatActivity() {
         techPics!!.add(R.drawable.james4)
         techPics!!.add(R.drawable.mahmoud4)
         techPics!!.add(R.drawable.reda)
+
+        /*
+        * bahrawy -> 0
+        * reda -> 3
+        * hany -> 1
+        * mahmoud ->2*/
     }
     fun tryyy(): MutableList<TechDataClass>? {
 
@@ -467,9 +508,9 @@ class MainActivity : AppCompatActivity() {
         val Technician=TechDataClass(TechID = techs.TechID, techNo_ofTasks = "No Of Tasks", techName = techs.techName, techImg = techs.techImg)
         FireStoreUtiles().InsertTechnicianToDataBase(Technician).addOnCompleteListener({
             if(it.isSuccessful){
-                Toast.makeText(this@MainActivity,"Succeed To Add AllTechnician todatabase",Toast.LENGTH_LONG).show()
+               // Toast.makeText(this@MainActivity,"Succeed To Add AllTechnician todatabase",Toast.LENGTH_LONG).show()
             }else{
-                Toast.makeText(this@MainActivity,"problem occured ${it.exception.toString()}",Toast.LENGTH_LONG).show()
+               // Toast.makeText(this@MainActivity,"problem occured ${it.exception.toString()}",Toast.LENGTH_LONG).show()
             }
         })
 

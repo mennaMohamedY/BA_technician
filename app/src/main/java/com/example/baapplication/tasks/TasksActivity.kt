@@ -1,8 +1,12 @@
 package com.example.baapplication.tasks
 
+import android.icu.util.Calendar
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import com.example.baapplication.databinding.ActivityTasksBinding
 import com.example.baapplication.models.FireStoreUtiles
@@ -11,6 +15,7 @@ import com.example.baapplication.models.TaskDetails
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.QuerySnapshot
+import java.text.SimpleDateFormat
 
 class TasksActivity : AppCompatActivity() {
     companion object{
@@ -24,7 +29,14 @@ class TasksActivity : AppCompatActivity() {
     lateinit var taskBinding:ActivityTasksBinding
     lateinit var taskVm:TasksViewModel
     lateinit var TasksAdapter:tasksAdapter
+    var calendar: Calendar?=null
+    var simpleFormat: SimpleDateFormat?=null
+    var Date:String?=null
+    var currentDay:String?=null
 
+
+
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         taskBinding=ActivityTasksBinding.inflate(layoutInflater)
@@ -41,6 +53,19 @@ class TasksActivity : AppCompatActivity() {
         //getTasks()
        // getAllTasks()
        // loadTasks()
+        calendar=Calendar.getInstance()
+        simpleFormat= SimpleDateFormat("dd-MM-yyyy")
+        var datsepareted=simpleFormat.toString().split("-")
+        Toast.makeText(this,"${simpleFormat}",Toast.LENGTH_LONG).show()
+        simpleFormat= SimpleDateFormat("dd-MM-yyyy")
+        Date=simpleFormat!!.format(calendar!!.time)
+        Log.e("date","${simpleFormat}, ")
+        Date=simpleFormat!!.format(calendar!!.time)
+        var h=Date.toString().split("-")
+
+
+
+        currentDay=h.get(1)
 
 
         //taskVm.loadTasks()
@@ -56,20 +81,29 @@ class TasksActivity : AppCompatActivity() {
         }
     }
     fun loadTasks(){
-        FireStoreUtiles().getAllTasks(Tech_ID!!).addOnCompleteListener({
+        FireStoreUtiles().getAllTasks(Tech_ID!!,"09").addOnCompleteListener({
             if (it.isSuccessful){
-                val tasks=it.result.toObjects(TaskDetails::class.java)
-                taskVm.TasksLiveData.value=tasks
-                val No_OfTasks= NoOfTasks("N0 Of Tasks:"+tasks.size)
+                if(it.result.toObjects(TaskDetails::class.java).size == 0){
+                    taskVm.TasksLiveData.value=null
+                }else{
+                    val tasks=it.result.toObjects(TaskDetails::class.java)
+                    taskVm.TasksLiveData.value=tasks
+                }
+
+               // val No_OfTasks= NoOfTasks("N0 Of Tasks:"+tasks.size)
                // taskVm.noOfTask.value="N0 Of Tasks:"+tasks.size
             }else{
-                Toast.makeText(this@TasksActivity,"Error occured ${it.exception.toString()}",Toast.LENGTH_LONG).show()
+              //  Toast.makeText(this@TasksActivity,"Error occured ${it.exception.toString()}",Toast.LENGTH_LONG).show()
             }
         })
     }
     fun gg(){
-        FireStoreUtiles().getAllTasks(Tech_ID!!).addOnCompleteListener({
+        FireStoreUtiles().getAllTasks(Tech_ID!!,currentDay!!).addOnCompleteListener({
             if(it.isSuccessful){
+                if(it.result.toObjects(TaskDetails::class.java).size == 0){
+                    taskVm.TasksLiveData.value=null
+                }
+
                 val tasks = it.result.toObjects(TaskDetails::class.java)
                 taskVm.TasksLiveData.value=tasks
             }

@@ -19,6 +19,7 @@ class TechniciansAdapter(var Data:List<TechDataClass?>?,var techNoOfTasks:NoOfTa
     var onEndTaskClickListener: OnEndTaskClickListener?=null
     var onViewTasksClickListener:OnViewTasksClickListener?=null
     var taskCreator:String?=null
+    var onNumOFTaskClickListener: OnNumOfTasksClickListener?=null
 
     var showErrorfun:ShowErrorfun?=null
 
@@ -80,6 +81,7 @@ class TechniciansAdapter(var Data:List<TechDataClass?>?,var techNoOfTasks:NoOfTa
             onViewTasksClickListener?.OnViewTaskClick(position,currentItem!!)
         })
 
+
         /*
 
 
@@ -118,6 +120,10 @@ class TechniciansAdapter(var Data:List<TechDataClass?>?,var techNoOfTasks:NoOfTa
         holder.singlePersonDataBinding.techName.setText(currentItem?.techName)
         holder.singlePersonDataBinding.PersonImg.setImageResource(currentItem?.techImg!!)
         holder.singlePersonDataBinding.noOfTasks.setText(currentItem.techNo_ofTasks)
+
+        holder.singlePersonDataBinding.noOfTasks.setOnClickListener {
+            onNumOFTaskClickListener?.OnNumOfTaskClick(currentItem,position)
+        }
 
         holder.singlePersonDataBinding.GoToTask.setOnClickListener({
             val actualUserUsingApp=UserProvider.user?.email
@@ -278,7 +284,9 @@ class TechniciansAdapter(var Data:List<TechDataClass?>?,var techNoOfTasks:NoOfTa
 
     interface OnAddTaskClickListen {
         fun OnAddTask(TaskData: TechDataClass, position: Int)
-
+    }
+    interface OnNumOfTasksClickListener{
+        fun OnNumOfTaskClick(TaskData: TechDataClass, position: Int)
     }
 
     override fun getItemCount(): Int {

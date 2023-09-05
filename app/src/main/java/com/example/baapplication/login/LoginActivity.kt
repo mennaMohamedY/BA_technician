@@ -57,7 +57,7 @@ class LoginActivity : AppCompatActivity(),NavigatorLogin{
     }
 
     override fun showError(errorMsg: String) {
-        Toast.makeText(this,"${errorMsg}",Toast.LENGTH_LONG).show()
+     //   Toast.makeText(this,"${errorMsg}",Toast.LENGTH_LONG).show()
     }
 
     override fun goToLoginActivity() {
